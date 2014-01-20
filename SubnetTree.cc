@@ -245,6 +245,22 @@ PyObject* SubnetTree::lookup(int family, inx_addr addr) const
     return data;
 }
 
+PyObject* g_dict = NULL;
+
+void add_to_dict(prefix_t *prefix, void *data)
+{
+    PyObject* d = (PyObject*)data;
+    PyDict_SetItemString(g_dict, prefix_toa2x(prefix, (char *)NULL, 1), d);
+}
+
+PyObject* SubnetTree::todict() const
+{
+    PyObject* dict = (PyObject*)PyDict_New();
+    g_dict = dict;
+    patricia_process(tree, (void_fn_t)add_to_dict);
+    return dict;
+}
+
 bool SubnetTree::get_binary_lookup_mode()
 {
     return binary_lookup_mode;

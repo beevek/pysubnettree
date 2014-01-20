@@ -30,6 +30,8 @@ public:
    PyObject* lookup(const char *cidr, int size) const;
    PyObject* lookup(unsigned long addr) const;
 
+   PyObject* todict() const;
+
    bool get_binary_lookup_mode();
    void set_binary_lookup_mode(bool binary_lookup_mode = true);
 

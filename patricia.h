@@ -103,6 +103,7 @@ typedef struct _patricia_tree_t {
 } patricia_tree_t;
 
 
+char *prefix_toa2x (prefix_t *prefix, char *buff, int with_len);
 patricia_node_t *patricia_search_exact (patricia_tree_t *patricia, prefix_t *prefix);
 patricia_node_t *patricia_search_best (patricia_tree_t *patricia, prefix_t *prefix);
 patricia_node_t * patricia_search_best2 (patricia_tree_t *patricia, prefix_t *prefix, 
